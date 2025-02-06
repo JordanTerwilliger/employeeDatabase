@@ -6,46 +6,71 @@ using namespace std;
 
 const int EMPLOYEE_COUNT = 5;  
 class Employee{
-    public:
+    private:
     string name;
     string title;
     double wage;
+
+    //Getters and Setters
+    void setName(){
+
+    }
+    string getName(){
+
+        return 0;
+    }
+    void setTitle(){
+
+    }
+    string getTitle(){
+
+        return 0;
+    }
+    void setWage(){
+
+    }
+    double getWage(){
+
+        return 0;
+    }
 };
 
-double getWages(){
-
-    return 0;
-}
-void setWages(){
-
-}
 void calculateTotalWages(){
-    for (size_t i = 1; i <= EMPLOYEE_COUNT; i++)
-    {
-         cout << "Enter the amount of hours worked for employee #" << i << "\n";
-         vector<int> hours = {};
+    int employeeHours;
+    vector<double> hours = {}; //Creates a vector to hold employee's hours
+    for (size_t i = 1; i <= EMPLOYEE_COUNT; i++){
+        cout << "Enter the amount of hours worked for employee #" << i << "\n";
+        cin >> employeeHours;
+        hours.push_back(employeeHours);
     }
-    double wages = getWages();
+    for (size_t i = 0; i < EMPLOYEE_COUNT; i++){
+        cout << "Employee #" << i+1 << hours.at(i) << "\n";
+    }
+    system("pause");
 }
 void printEmployees(){
-    for (int i = 0; i < EMPLOYEE_COUNT; i++)
-    {
-        cout << "printEmployees";
+    for (int i = 0; i < EMPLOYEE_COUNT; i++){
+        cout << "printEmployees \n";
     }
+    system("pause");
     
 }
 void desc(){
-    cout << "\nHello, this application is designed to manage employees and their wages.\n" << 
-            "Please select an option to start. \n\n" << 
-            "1. Print Employees. \n" <<
-            "2. Calculate Total Wages. \n" << 
-            "3. Exit Application";
+    cout << "\nHello, this application is designed to manage employees and their wages.\n"; 
+}
+void options(){
+    cout << "Please select an option to start. \n\n" << 
+    "1. Print Employees. \n" <<
+    "2. Calculate Total Wages. \n" << 
+    "3. Exit Application\n";
+
 }
 int main(){
     desc();
     string input;
     while (true)
     {
+        options();
         cin >> input;
         int userSelection = atoi(input.c_str());
         switch (userSelection)
