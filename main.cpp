@@ -3,17 +3,29 @@
 #include <stdlib.h>
 #include <vector>       
 using namespace std;
-
-const int EMPLOYEE_COUNT = 5;  
+int EMPLOYEE_COUNT = 5;  
 class Employee{
     private:
     string name;
     string title;
     double wage;
 
+    public:
+    //Constuctor
+    Employee(string constructorName, string constructorTitle, double constructorWage){
+        this->name = constructorName;
+        this->title = constructorTitle;
+        this->wage = constructorWage;
+    }
     //Getters and Setters
-    void setName(){
-
+    void setEmployeeCount(int newEmployeeCount){
+        EMPLOYEE_COUNT = newEmployeeCount;
+    }
+    int getEmployeeCount(){
+        return EMPLOYEE_COUNT;
+    }
+    void setName(string name){
+        
     }
     string getName(){
 
@@ -34,7 +46,14 @@ class Employee{
         return 0;
     }
 };
+void createEmployee(){
+    Employee e1("Bob","Manager",40);
+    Employee e2("John","Line Cook", 20);
+    Employee e3("Mark","Cashier", 8);
+    Employee e4("Matthew","Cashier", 10);
+    Employee e5("Sarah", "Cashier", 7.25);
 
+}
 void calculateTotalWages(){
     int employeeHours;
     vector<double> hours = {}; //Creates a vector to hold employee's hours
@@ -43,14 +62,17 @@ void calculateTotalWages(){
         cin >> employeeHours;
         hours.push_back(employeeHours);
     }
-    for (size_t i = 0; i < EMPLOYEE_COUNT; i++){
-        cout << "Employee #" << i+1 << hours.at(i) << "\n";
+    for (size_t i = 0; i < EMPLOYEE_COUNT; i++)
+    {
+        
     }
+    
     system("pause");
 }
+
 void printEmployees(){
     for (int i = 0; i < EMPLOYEE_COUNT; i++){
-        cout << "printEmployees \n";
+        cout << getTitle;
     }
     system("pause");
     
