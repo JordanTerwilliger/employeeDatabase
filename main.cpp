@@ -3,49 +3,58 @@
 #include <stdlib.h>
 #include <vector>       
 using namespace std;
-int EMPLOYEE_COUNT = 5;  
+
 class Employee{
     private:
     string name;
     string title;
     double wage;
+    static int employeeCount;
 
     public:
     //Constuctor
-    Employee(string constructorName, string constructorTitle, double constructorWage){
-        this->name = constructorName;
-        this->title = constructorTitle;
-        this->wage = constructorWage;
+    Employee(string constructorName, string constructorTitle, double constructorWage);
+
+    void setEmployeeCount(int employeeCount);
+    int getEmployeeCount() const;
+    void setName(string name);
+    string getName() const;
+    void setTitle(string name);
+    string getTitle() const;
+    void setWage(double wage);
+    double getWage() const;
+};
+
+int Employee::employeeCount = 5;
+
+//Getters and Setters
+    void Employee::setEmployeeCount(int newEmployeeCount){
+        Employee::employeeCount = newEmployeeCount;
     }
-    //Getters and Setters
-    void setEmployeeCount(int newEmployeeCount){
-        EMPLOYEE_COUNT = newEmployeeCount;
+    int Employee::getEmployeeCount() const {
+        return Employee::employeeCount;
     }
-    int getEmployeeCount(){
-        return EMPLOYEE_COUNT;
-    }
-    void setName(string name){
+    void Employee::setName(string name){
         
     }
-    string getName(){
+    string Employee::getName() const {
 
-        return 0;
+        return Employee::name;
     }
-    void setTitle(){
-
-    }
-    string getTitle(){
-
-        return 0;
-    }
-    void setWage(){
+    void Employee::setTitle(string name){
 
     }
-    double getWage(){
-
-        return 0;
+    string Employee::getTitle() const {
+        return Employee::title;
     }
-};
+    void Employee::setWage(double wage){
+
+    }
+    double Employee::getWage() const {
+        return Employee::wage;
+    }
+
+
 void createEmployee(){
     Employee e1("Bob","Manager",40);
     Employee e2("John","Line Cook", 20);
@@ -56,23 +65,21 @@ void createEmployee(){
 }
 void calculateTotalWages(){
     int employeeHours;
+    int employeeCount = Employee::getEmployeeCount();
     vector<double> hours = {}; //Creates a vector to hold employee's hours
-    for (size_t i = 1; i <= EMPLOYEE_COUNT; i++){
+    for (size_t i = 1; i <= employeeCount; i++){
         cout << "Enter the amount of hours worked for employee #" << i << "\n";
         cin >> employeeHours;
         hours.push_back(employeeHours);
-    }
-    for (size_t i = 0; i < EMPLOYEE_COUNT; i++)
-    {
-        
     }
     
     system("pause");
 }
 
 void printEmployees(){
-    for (int i = 0; i < EMPLOYEE_COUNT; i++){
-        cout << getTitle;
+    int employeeCount = Employee::getEmployeeCount();
+    for (int i = 0; i < employeeCount; i++){
+        //cout << getTitle;
     }
     system("pause");
     
