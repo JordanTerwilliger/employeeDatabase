@@ -25,16 +25,18 @@ class Employee{
 
     
 void calculateTotalWages(int employeeCount, vector<Employee>& employees){
-    string input;
+    double employeeHours;
     vector<double> hours; //Creates a vector to hold employee's hours.
-    double employeeHours = atoi(input.c_str());
     for (size_t i = 0; i < employeeCount; i++){
         cout << "Enter the amount of hours worked for employee #" << i + 1 << " (" << employees[i].getName() << "):\n";
-        cin >> input;
-        employeeHours = atoi(input.c_str());
+        while(!(cin >> employeeHours)){
+            cout << "Please enter a valid input, if the employee did not work this week, please enter 0. \n";
+            cin.clear();
+            cin.ignore();
+        }
         if (employeeHours >= 0){
             hours.push_back(employeeHours);
-        }else{ //Bad condition catch.
+        }else{ //Bad integer handle.
             cout << "Please enter a valid input, if the employee did not work this week, please enter 0. \n";
             i--; //Prevents the for loop for interating on a bad input;
         }
