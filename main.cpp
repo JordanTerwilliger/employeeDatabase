@@ -24,30 +24,38 @@ class Employee{
 };
 
     
-    void calculateTotalWages(int employeeCount, vector<Employee>& employees){
-        double employeeHours;
-        vector<double> hours; //Creates a vector to hold employee's hours
-        for (size_t i = 0; i < employeeCount; i++){
-            cout << "Enter the amount of hours worked for employee #" << i + 1 << " (" << employees[i].getName() << "):\n";
-            cin >> employeeHours;
+void calculateTotalWages(int employeeCount, vector<Employee>& employees){
+    string input;
+    vector<double> hours; //Creates a vector to hold employee's hours.
+    double employeeHours = atoi(input.c_str());
+    for (size_t i = 0; i < employeeCount; i++){
+        cout << "Enter the amount of hours worked for employee #" << i + 1 << " (" << employees[i].getName() << "):\n";
+        cin >> input;
+        employeeHours = atoi(input.c_str());
+        if (employeeHours >= 0){
             hours.push_back(employeeHours);
+        }else{ //Bad condition catch.
+            cout << "Please enter a valid input, if the employee did not work this week, please enter 0. \n";
+            i--; //Prevents the for loop for interating on a bad input;
         }
-        double totalWages = 0;
-        for (size_t i = 0; i < employeeCount; i++){
-            totalWages += hours[i] * employees[i].getWage(); //Total wages = hour of the employee * the hours the employee worked ( user inputted)
-        }
-
-        cout << "The total wages for all employees is: $" << totalWages << endl;
-        system("pause");
+    }
+    
+    double totalWages = 0;
+    for (size_t i = 0; i < employeeCount; i++){
+        totalWages += hours[i] * employees[i].getWage(); //Total wages = hour of the employee * the hours the employee worked ( user inputted)
     }
 
+    cout << "The total wages for all employees is: $" << totalWages << endl;
+    system("pause");
+}   
 
-    void printEmployees(int employeeCount, vector<Employee>& employees){
-        for (size_t i = 0; i < employeeCount; i++){
-            cout << "Employee #" << i + 1 << ": " << employees[i].getName() << ", Title: " << employees[i].getTitle() << ", Wage: $" << employees[i].getWage() << "/hr\n";
-        }
-        system("pause");
+
+void printEmployees(int employeeCount, vector<Employee>& employees){
+    for (size_t i = 0; i < employeeCount; i++){
+        cout << "Employee #" << i + 1 << ": " << employees[i].getName() << ", Job Title: " << employees[i].getTitle() << ", Wage: $" << employees[i].getWage() << "/hr\n";
     }
+    system("pause");
+}    
 
 
 
@@ -76,21 +84,23 @@ int main(){
         options();
         cin >> input;
         int userSelection = atoi(input.c_str());
-        switch (userSelection){
-        case 1: //Print employees in list.
-            printEmployees(employees.size(), employees);
-            break;
-        case 2: // Calc total wages.
-            calculateTotalWages(employees.size(),employees);
-            break;
-        case 3: //Exit application.
-            return 0;
-        default:
-            cin >> input;
-            userSelection = atoi(input.c_str());
-            break;
-        }
-        cout << "\nPlease select another option. Or press exit application to exit.";
-    }
+        if (userSelection != 0){
+            switch (userSelection){
+                case 1: //Print employees in list.
+                    printEmployees(employees.size(), employees);
+                    break;
+                case 2: // Calc total wages.
+                    calculateTotalWages(employees.size(),employees);
+                    break;
+                case 3: //Exit application.
+                    return 0;
+                default:
+                    cout << "Invalid input, please select 1, 2, or 3. \n";
+                }}
+                else{
+                    cout << "Invalid input, please select 1, 2, or 3. \n";
+                }
+            }
     return 0;
-}
+    }
+
