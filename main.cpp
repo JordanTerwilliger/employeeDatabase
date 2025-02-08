@@ -34,9 +34,9 @@ void calculateTotalWages(int employeeCount, vector<Employee>& employees){
             cin.clear();
             cin.ignore();
         }
-        if (employeeHours >= 0){
+        if (employeeHours >= 0){ //Positive double.
             hours.push_back(employeeHours);
-        }else{ //Bad integer handle.
+        }else{ //Negative double case.
             cout << "Please enter a valid input, if the employee did not work this week, please enter 0. \n";
             i--; //Prevents the for loop for interating on a bad input;
         }
@@ -80,29 +80,26 @@ int main(){
         Employee("Sarah", "Cashier", 7.25),
     };
     desc();
-    string input;
-    while (true)
-    {
-        options();
-        cin >> input;
-        int userSelection = atoi(input.c_str());
-        if (userSelection != 0){
-            switch (userSelection){
-                case 1: //Print employees in list.
-                    printEmployees(employees.size(), employees);
-                    break;
-                case 2: // Calc total wages.
-                    calculateTotalWages(employees.size(),employees);
-                    break;
-                case 3: //Exit application.
-                    return 0;
-                default:
-                    cout << "Invalid input, please select 1, 2, or 3. \n";
-                }}
-                else{
-                    cout << "Invalid input, please select 1, 2, or 3. \n";
-                }
-            }
+    int userSelection;
+    options();
+    while (!(cin >> userSelection)){
+        cout << "Invalid input, please select 1, 2, or 3. \n";
+        cin.clear();
+        cin.ignore();
+    }
+    switch (userSelection){
+        case 1: //Print employees in list.
+            printEmployees(employees.size(), employees);
+            break;
+        case 2: // Calc total wages.
+            calculateTotalWages(employees.size(),employees);
+            break;
+        case 3: //Exit application.
+            return 0;
+        default:
+            cout << "Invalid input, please select 1, 2, or 3. \n";
+        }
+            
     return 0;
     }
 
